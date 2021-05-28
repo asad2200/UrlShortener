@@ -1,0 +1,38 @@
+{% extends "main/base.html" %}
+{% load myfilters %}
+{% block title %}
+Home
+{% endblock %}
+{% block css %}
+{% endblock %}
+{% block main %}
+<h1 class="mt-3">URL Shortener</h1>
+<hr />
+<form method="POST" class="mt-3 form-group">
+    {% csrf_token %}
+    {% if form.non_field_errors %}
+    <div class="alert alert-danger" role="alert">
+        {{ form.non_field_errors }}
+    </div>
+    {% endif %}
+    <label for="{{form.name.id_for_name}}" class="form-label mt-1">Custom String: </label>
+    <div id="emailHelp" class="form-text">
+        {{ request.scheme }}://{{request.get_host}}/{string}
+    </div>
+    {{form.name|addclass:'form-control'}}
+    <div id="emailHelp" class="form-text">Max Length is 20.</div>
+    {% if form.name.errors %}
+    <div class="alert alert-danger mt-2" role="alert">
+        {{ form.name.errors }}
+    </div>
+    {% endif %}
+    <label for="{{form.url.id_for_url}}" class="form-label mt-1">URL: </label>
+    {{form.url|addclass:'form-control'}}
+    {% if form.url.errors %}
+    <div class="alert alert-danger mt-2" role="alert">
+        {{ form.url.errors }}
+    </div>
+    {% endif %}
+    <input type="submit" class="btn btn-primary mt-2" />
+</form>
+{% endblock %}

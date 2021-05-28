@@ -1,0 +1,14 @@
+{% extends "main/base.html" %}
+{% block title %}
+Success!!
+{% endblock %}
+{% block css %}
+{% endblock %}
+{% block main %}
+<div class="alert alert-success mt-4" role="alert">
+    Link is SuccessFully Created. Link is
+    <a href="/{{name|safe}}" class="alert-link">
+        {{ request.scheme }}://{{request.get_host}}/{{name}}
+    </a>
+</div>
+{% endblock %}
